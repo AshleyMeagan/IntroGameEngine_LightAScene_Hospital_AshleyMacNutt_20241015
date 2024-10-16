@@ -1,21 +1,16 @@
 using UnityEngine;
 
-public class Whispers : MonoBehaviour
+public class SoundTrigger : MonoBehaviour
 {
-    public AudioSource audioSource;  // Reference to the AudioSource component
-    public GameObject player;        // Reference to the player (to detect when they enter the room)
+    public AudioSource audioSource;
 
-    // This method is called when another object enters the trigger
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        // Check if the object that entered the room is the player
-        if (other.gameObject == player)
+        // Check if the player enters the trigger
+        if (other.CompareTag("Player"))
         {
-            // Play the sound effect when the player enters the room
-            if (!audioSource.isPlaying)  // Optional: prevent sound from playing again if it's already playing
-            {
-                audioSource.Play();
-            }
+            // Play the sound
+            audioSource.Play();
         }
     }
 }
