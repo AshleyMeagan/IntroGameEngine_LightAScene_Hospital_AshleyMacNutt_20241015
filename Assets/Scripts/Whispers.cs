@@ -6,11 +6,17 @@ public class SoundTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if the player enters the trigger
         if (other.CompareTag("Player"))
         {
             // Play the sound
-            audioSource.Play();
+            if (audioSource != null) // Ensure that the audioSource is assigned
+            {
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("AudioSource is not assigned in the Inspector!");
+            }
         }
     }
 }
